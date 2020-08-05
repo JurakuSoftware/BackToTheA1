@@ -16,7 +16,9 @@ BackToTheA1.exe "c:\temp\hoge.xlsx"(フルパス指定のこと)
 1:異常終了（変換失敗。エラー詳細はコンソール出力を参照）
 
 ## 使用ライブラリ
-NetOffice
+NetOffice.Excel.Net45.1.7.4.4  
+NetOffice.Core.Net45.1.7.4.4
+（何れもNuGetから取得しています）
 
 ## ライセンス
 MITライセンス
