@@ -76,6 +76,10 @@ namespace BackToTheA1
                         //倍率を100%に変更
                         excelApplication.ActiveWindow.Zoom = 100;
 
+                        //スクロールを一番先頭に変更（選択セルを変更しても、スクロールバーの位置が元のままなので、先頭に移動）
+                        excelApplication.ActiveWindow.ScrollColumn = 1;
+                        excelApplication.ActiveWindow.ScrollRow = 1;
+
                         //一番左上のA1セルを選択状態に変更
                         sheet.Range("A1").Select();
                     }
