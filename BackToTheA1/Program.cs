@@ -43,21 +43,33 @@ namespace BackToTheA1
             if (!CheckArgs(args)) return NG;
 
             //Excel起動
+            WriteLog("Excel起動待ち");
             using (Excel.Application excelApplication = new Excel.Application())
             {
+                WriteLog("Excel起動");
+
                 try
                 {
                     //Excel描画停止（速度改善のため）
                     ExcelBeginUpdate(excelApplication);
 
                     //対象ファイルを開く
+                    WriteLog("ファイル開く");
                     Excel.Workbook workBook = excelApplication.Workbooks.Open(filePath);
 
                     //A1セルを選択状態にする
+                    WriteLog($"全シート数：{workBook.Sheets.Count}");
                     for (int i = 1; i <= workBook.Sheets.Count; i++)
                     {
+                        WriteLog($"{i}シート目処理中");
+
                         //シート取得
                         Excel.Worksheet sheet = (Excel.Worksheet)workBook.Sheets[i];
+                        WriteLog($"シート名：{sheet.Name}");
+
+                        //非表示のシートは操作に失敗するので無視する
+                        if (sheet.Visible != Excel.Enums.XlSheetVisibility.xlSheetVisible) continue;
+
                         //シートを選択状態にする（こうしないとセル選択に失敗する）
                         sheet.Select();
 
@@ -69,10 +81,12 @@ namespace BackToTheA1
                     }
 
                     //一番左に存在するシートを選択状態にする
+                    WriteLog("一番左のシートを選択");
                     Excel.Worksheet firstSheet = (Excel.Worksheet)workBook.Sheets[1];
                     firstSheet.Select();
 
                     //保存
+                    WriteLog("保存");
                     workBook.Save();
                     workBook.Close();
 
