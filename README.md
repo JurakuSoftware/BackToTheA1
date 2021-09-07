@@ -29,3 +29,4 @@ https://juraku-software.net/
   
 コンパイルしてすぐに使える状態のEXEは以下のページで公開しています。  
 https://juraku-software.net/windows-app-backtothea1/
+
